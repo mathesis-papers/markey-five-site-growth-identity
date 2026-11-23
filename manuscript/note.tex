@@ -1,0 +1,518 @@
+\documentclass[11pt]{article}
+\usepackage[margin=26mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{xurl}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\title{Proof of Markey's five-site growth identity\\and Shannon's region formulas}
+\author{Haobo Ma\\\small ChronoAI Pte Ltd, Singapore
+\and Wenlin Zhang\\\small National University of Singapore\\\small ChronoAI Pte Ltd, Singapore}
+\date{November 16, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove Markey's conjecture in OEIS A400701, FORMULA, revision 30
+(October 20, 2026), that the five-site growth count exceeds Shannon's
+circle-vertex count at the same iteration $n>1$ by $4n+7$, using
+residue-class points in expanding hexagons.
+Counting incidences on the same shapes also proves Shannon's conjectured
+region formulas and gives the curved-edge counts. The argument proves
+the recorded formulas for three and four initial sites and the
+generating functions recorded by Irvine.
+\end{abstract}
+
+\section{The counts and their common shape}
+Use axial coordinates $(x,y)\in\Z^2$ for the triangular lattice, embedded in
+the plane as $(x+y/2,\sqrt3y/2)$. Its six neighbor displacements are
+\[
+ D=\{(1,0),(0,1),(-1,1),(-1,0),(0,-1),(1,-1)\}.
+\]
+For integers $2\leq m\leq5$, start with $S_m(0)=\{(j,0):0\leq j<m\}$ and set
+\[
+ S_m(n+1)=S_m(n)\cup\{p: |(p+D)\cap S_m(n)|\geq2\},\qquad
+ a_m(n)=|S_m(n)|.
+\]
+The update is simultaneous. Markey's five-site sequence is $a_5$;
+the three- and four-site versions are $a_3,a_4$ \cite{markey,three,four}.
+Write $v(n)$ for Shannon's count: retain two distinct initial points and, at
+each step, adjoin intersections of distinct circles centered at retained
+points, all of radius the initial separation \cite{shannon}.
+The totals begin $2,4,8$ at $n=0,1,2$; OEIS lists $v$ from $n=1$.
+
+The conjecture concerns a linear difference between two quadratic counts.
+The useful mechanism is a change of coordinates of determinant $3$, not
+subtraction of guessed formulas. The formulas and generating functions were
+already recorded in OEIS; in particular, Sean A. Irvine supplied the
+generating functions for the three-, four-, and five-site sequences in
+October 2026 \cite{markey,three,four}. We give direct shape and counting
+proofs of these identities. Barker's 2015 petal generating function
+already contains the same quadratic arithmetic after a linear adjustment
+\cite{petals}; Corollary~\ref{cor:petal} makes that relation explicit,
+separately from the geometric petal interpretation.
+The shape argument determines the geometry and yields the region and
+edge counts. The superficially
+similar added-circle sequence A264788 has a different iteration rule
+\cite{circles}; its value at stage $3$ is $4$, whereas the present
+construction adds $v(3)-v(2)=6$ circles. These statements concern deterministic finite-seed growth,
+not a random initial configuration.
+
+Gravner and Griffeath's shape theory treats box-neighborhood growth;
+their explicit recursion in Section~2, equation~(2.3), is for the
+eight-neighbor Moore rule with threshold three and a diamond seed
+\cite{gravner}. Lehjef studies threshold-three percolation on finite
+hexagonal arrays \cite[Sections~3.2 and 4]{lehjef}; her residue-class
+formulas give completion times for size-dependent seeds, rather than
+occupied-site counts from a fixed collinear seed. Neither source contains
+Markey's difference identity or the exact two- through five-site
+threshold-two growth formulas proved here. Barker's earlier arithmetic
+antecedent remains the generating function described above.
+
+\begin{theorem}\label{thm:main}
+For $n\geq2$, put $L=m-1+2n$. The map
+\[
+ (x,y)\longmapsto(u,v)=(x-y+n,x+2y+n)
+\]
+is a bijection from $S_m(n)$ to
+\begin{equation}\label{eq:polygon}
+ P(L,n)=\{(u,v)\in\Z^2:0\leq u,v\leq L,\quad
+ n<u+v<2L-n,\quad u\equiv v\pmod3\}.
+\end{equation}
+Moreover $v(n)=a_2(n)$ for all $n\geq0$. Consequently
+\begin{equation}\label{eq:difference}
+ a_5(n)=v(n)+4n+7\qquad(n\geq2).
+\end{equation}
+\end{theorem}
+
+\section{Why the hexagon grows by one layer}
+For integers $A,L$ let
+\[
+ H(A,L)=\{(u,v)\in\Z^2:0\leq u,v\leq L,\quad
+ A\leq u+v\leq2L-A\}.
+\]
+The transformed neighbor moves are
+\[
+ E=\{(1,1),(-1,2),(2,-1),(-1,-1),(1,-2),(-2,1)\}.
+\]
+\begin{lemma}\label{lem:boundary}
+Suppose $A\geq3$ and $L\geq A+2$. A point $p$ is in
+$H(A,L)$ or has at least two distinct $E$-neighbors there if and only if
+$p+(1,1)\in H(A+1,L+2)$.
+\end{lemma}
+\begin{proof}
+Write $p=(u,v)$. The expanded inequalities, in the old coordinates, are
+\begin{equation}\label{eq:expanded}
+ -1\leq u,v\leq L+1,\qquad A-1\leq u+v\leq2L-A+1.
+\end{equation}
+They hold for every old point. If a point violates, for example, $u\geq-1$,
+only the move $(2,-1)$ can take it into $u\geq0$; hence it cannot have two
+old neighbors. For $u\leq L+1$, $v\geq-1$, $v\leq L+1$, the corresponding
+unique possible correcting moves are $(-2,1),(-1,2),(1,-2)$.
+If $u+v<A-1$, only $(1,1)$ can reach $u+v\geq A$; the upper sum bound
+uses $(-1,-1)$. This proves necessity of every inequality in
+\eqref{eq:expanded}.
+
+For sufficiency, suppose \eqref{eq:expanded} holds but $p\notin H(A,L)$.
+At least one line of the following table applies. Select the first
+applicable line; the two listed moves send $p$ into $H(A,L)$.
+\begin{center}\small
+\begin{tabular}{lll}
+\toprule
+Boundary & Additional condition & Two moves\\
+\midrule
+$u+v=A-1$ & $u\geq1$ & $(1,1),(-1,2)$\\
+ & $u\leq0$ & $(1,1),(2,-1)$\\
+$u+v=2L-A+1$ & $u\leq L-1$ & $(-1,-1),(1,-2)$\\
+ & $u\geq L$ & $(-1,-1),(-2,1)$\\
+$u=-1$ & $v\leq A+1$ & $(2,-1),(1,1)$\\
+ & $v>A+1$ & $(2,-1),(1,-2)$\\
+$u=L+1$ & $L-v\leq A+1$ & $(-2,1),(-1,-1)$\\
+ & $L-v>A+1$ & $(-2,1),(-1,2)$\\
+$v=-1$ & $u\leq A+1$ & $(-1,2),(1,1)$\\
+ & $u>A+1$ & $(-1,2),(-2,1)$\\
+$v=L+1$ & $L-u\leq A+1$ & $(1,-2),(-1,-1)$\\
+ & $L-u>A+1$ & $(1,-2),(2,-1)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Here the two sum-boundary cases take precedence; otherwise
+$A\leq u+v\leq2L-A$. For example, on $u=-1$ we then have
+$A+1\leq v\leq L+1$. The move $(2,-1)$ gives $(1,v-1)$, whose sum is $v$;
+the second move is $(1,1)$ at $v=A+1$ and $(1,-2)$ at $v\geq A+2$.
+Both meet the required coordinate and sum bounds because $A\geq3$ and
+$L\geq A+2$. Interchanging coordinates and using
+$(u,v)\mapsto(L-u,L-v)$ proves the other three coordinate-boundary cases.
+On $u+v=A-1$, the choice $u\geq1$ gives $v\leq A-2$ and
+$u\leq A$ by \eqref{eq:expanded}; adding $(1,1)$ or $(-1,2)$ therefore
+stays in the coordinate box and raises the sum to $A+1$ or $A$.
+If $u\leq0$, use the displayed reflected choice in the second line.
+Central reflection handles the upper sum boundary. All listed moves are
+distinct. If none of these boundaries occurs, $p$ was already old.
+\end{proof}
+
+We now prove the shape assertion. At time $1$ the occupied rows are
+\[
+ y=-1:\ 1\leq x\leq m-1,\quad
+ y=0:\ 0\leq x\leq m-1,\quad
+ y=1:\ 0\leq x\leq m-2.
+\]
+To calculate time $2$, a point $(x,y)$ has neighbors in these rows at
+$(x\pm1,y)$, $(x,y+1)$, $(x-1,y+1)$, $(x,y-1)$ and $(x+1,y-1)$.
+Testing the row endpoints gives the following complete list:
+\begin{center}
+\begin{tabular}{c|ccccc}
+$y$ & $-2$ & $-1$ & $0$ & $1$ & $2$\\
+\hline
+$x$ & $[2,m-1]$ & $[0,m]$ & $[0,m-1]$ & $[-1,m-1]$ & $[0,m-3]$
+\end{tabular}
+\end{center}
+An interval with lower endpoint above its upper endpoint is empty.
+There are no other rows, since each move changes $y$ by at most one.
+Substitution in \eqref{eq:polygon} with $n=2$ gives exactly these intervals:
+indeed $3y=v-u$ and $L=m+3\leq8$, so $|y|\leq2$.
+At time $n$, write $A=n+1$, $L=m-1+2n$. The change to time $n+1$ shifts
+transformed coordinates by $(1,1)$. Lemma~\ref{lem:boundary} applies,
+since $n\geq2$ and $L-A=m+n-2\geq2$.
+It preserves the congruence $u\equiv v\pmod3$, as every move in $E$
+preserves it. Induction proves the shape assertion. The inverse map is
+$y=(v-u)/3$, $x=(2u+v)/3-n$, proving bijectivity.
+
+\section{Circle intersections stay on the lattice}
+A similarity sends any two initial points to $(0,0)$ and $(1,0)$ and their
+radius to $1$. For an axial displacement $(r,s)$, the squared distance is
+$Q(r,s)=r^2+rs+s^2$. Distinct lattice centers can have intersecting unit
+circles only if $0<Q(r,s)\leq4$. From
+$Q=(r+s/2)^2+3s^2/4$ we have $|s|\leq2$; substitution of the five possible
+values of $s$ shows that the centers' displacement is, up to the lattice
+rotation $(r,s)\mapsto(-s,r+s)$, one of $(1,0),(1,1),(2,0)$.
+For centers $0,d$, the unit-circle intersection points in axial coordinates
+are respectively
+\[
+\begin{array}{c|c}
+d&\text{intersections}\\\hline
+(1,0)&(0,1),(1,-1)\\
+(1,1)&(1,0),(0,1)\\
+(2,0)&(1,0).
+\end{array}
+\]
+These lists follow either by subtracting the two circle equations or by
+substitution followed by the fact that two distinct circles have at most
+two intersections (one in the tangency case).
+Thus all new intersections are lattice points and are adjacent to both
+centers. Conversely a lattice point adjacent to two occupied centers is
+such an intersection. Induction identifies the whole circle construction
+with $S_2(n)$ and proves $v(n)=a_2(n)$.
+
+\section{The count and its consequences}
+Put
+\[
+ b_r(L)=\left\lfloor\frac{L+3-r}{3}\right\rfloor\ (r=0,1,2),\qquad
+ C(n)=|\{(u,v)\in\Z_{\geq0}^2:u+v\leq n,\ u\equiv v\pmod3\}|.
+\]
+There are $b_r(L)$ integers of residue $r$ in $[0,L]$. The two excluded
+corners of the square in \eqref{eq:polygon} are disjoint because $n<L$,
+and the reflection $(u,v)\mapsto(L-u,L-v)$ identifies them. Hence
+\begin{equation}\label{eq:count}
+ |P(L,n)|=\sum_{r=0}^2 b_r(L)^2-2C(n).
+\end{equation}
+Replacing $L$ by $L+3$ increases each $b_r$ by $1$; their sum is $L+1$.
+The two corner counts are unchanged, so
+\[
+ |P(L+3,n)|-|P(L,n)|=2(L+1)+3=2L+5.
+\]
+Take $L=2n+1$, the value for $m=2$; its increment by $3$ is the value
+for $m=5$. This proves \eqref{eq:difference} and Theorem~\ref{thm:main}.
+The restriction is essential: $a_5(0)-v(0)=3$ and $a_5(1)-v(1)=9$.
+
+For completeness, the numbers of points on the slices $u+v=3k,3k+1,3k+2$
+with $u\equiv v\pmod3$ are $k+1,k,k+1$, respectively: solve
+$2u\equiv u+v\pmod3$ with $0\leq u\leq u+v$.
+Summing these slices gives
+\[
+\begin{array}{c|ccc}
+n&3k&3k+1&3k+2\\\hline
+2C(n)&3k^2+3k+2&3k^2+5k+2&3k^2+7k+4.
+\end{array}
+\]
+Substitute these expressions and $L=m-1+2n$ in \eqref{eq:count}.
+After collecting terms in each residue class one obtains:
+\begin{corollary}\label{cor:formulas}
+For $n\geq1$,
+\[
+v(n)=\begin{cases}
+(3n^2+5n)/3&n\equiv0\pmod3,\\
+(3n^2+5n+4)/3&n\equiv1\pmod3,\\
+(3n^2+5n+2)/3&n\equiv2\pmod3.
+\end{cases}
+\]
+For $n\geq2$,
+\[
+a_5(n)=\frac{3n^2+17n+25-2((n-1)\bmod3)}3,
+\]
+with $a_5(0)=5$, $a_5(1)=13$. For $n\geq0$ the sibling formulas are
+\[
+a_3(n)=\begin{cases}n^2+3n+1&n>0,\ n\equiv0\pmod3,\\
+n^2+3n+3&\text{otherwise},\end{cases}
+\qquad
+a_4(n)=\frac{3n^2+13n+12+2(n\bmod3)}3.
+\]
+\end{corollary}
+\begin{proof}
+Equation~\eqref{eq:count} proves the formulas for $n\geq2$; the displayed
+initial rows give $a_m(0)=m$, $a_m(1)=3m-2$, supplying all remaining cases.
+\end{proof}
+Write $\Delta^2a(n)=a(n+2)-2a(n+1)+a(n)$.
+\begin{corollary}\label{cor:second}
+The historical period-three patterns in A400699, A400700 and A400701
+are given exactly by
+\[
+ \Delta^2a_3(n)=\begin{cases}6&n\equiv2\pmod3,\\0&\text{otherwise},\end{cases}
+ \quad(n\geq1),\qquad
+ \Delta^2a_4(n)=\begin{cases}2&n\equiv0\pmod3,\\0&n\equiv1\pmod3,\\4&n\equiv2\pmod3,\end{cases}
+ \quad(n\geq0),
+\]
+and $\Delta^2a_5(n)=2(n\bmod3)$ for $n\geq2$.
+\end{corollary}
+\begin{proof}
+Substitute the three residue classes in Corollary~\ref{cor:formulas}.
+The excluded initial values are
+\[
+ \Delta^2a_3(0)=2,\qquad \Delta^2a_5(0)=2,\qquad
+ \Delta^2a_5(1)=0.\qedhere
+\]
+\end{proof}
+The patterns are recorded in the October 2026 entry histories
+\cite{markey,three,four}.
+
+The same formulas prove the recorded generating functions. As identities
+of formal power series, with $F_m(z)=\sum_{n\geq0}a_m(n)z^n$,
+\[
+\begin{aligned}
+F_3(z)&=\frac{3+z+2z^2-3z^3+5z^4-2z^5}{(1-z^3)(1-z)^2},\\
+F_4(z)&=\frac{2(2+z+z^2-2z^3+z^4)}{(1-z^3)(1-z)^2},\\
+F_5(z)&=\frac{5+3z+2z^2-5z^3+z^4-2z^5+2z^6}{(1-z^3)(1-z)^2}.
+\end{aligned}
+\]
+To verify them, write $n=3k+r$ in Corollary~\ref{cor:formulas} and use
+$\sum t^k=(1-t)^{-1}$, $\sum kt^k=t(1-t)^{-2}$ and
+$\sum k^2t^k=t(1+t)(1-t)^{-3}$, with $t=z^3$, inserting the exceptional
+initial values. Equivalently, multiplication by
+$1-2z+z^2-z^3+2z^4-z^5$ gives the displayed numerators.
+Thus the recurrence with coefficients $(2,-1,1,-2,1)$ holds from $n=6,5,7$
+for $m=3,4,5$, respectively; the starting indices matter.
+
+\section{Regions, edges, and added circles}
+At iteration $n\geq1$, the drawn circles have centers $S_2(n-1)$ and
+their retained vertices are $S_2(n)$. A retained center lies on the circle
+of an adjacent retained center. Thus vertices of degree two, including the
+initial centers, are included. Let $e(n)$ count the curved edges between
+consecutive retained vertices on these circles, and let $r(n)$ count
+bounded regions. These are A374339 and A374337 \cite{edges,regions}.
+
+\begin{corollary}\label{cor:regions}
+We have $e(1)=6$, $r(1)=3$. For $n\geq2$,
+\[
+e(n)=\begin{cases}6n^2-4n+2&n\equiv2\pmod3,\\
+6n^2-4n-2&n\equiv0,1\pmod3,\end{cases}
+\]
+and
+\[
+r(n)=\begin{cases}
+(15n^2-17n-3)/3&n\equiv0\pmod3,\\
+(15n^2-17n-7)/3&n\equiv1\pmod3,\\
+(15n^2-17n+7)/3&n\equiv2\pmod3.
+\end{cases}
+\]
+These prove Shannon's three conjectured region formulas, whose
+absolute value in the class $n\equiv1\pmod3$ supplies $r(1)=3$.
+\end{corollary}
+\begin{proof}
+Each circle has at least the two intersections with an adjacent circle,
+so its edge count is its number of retained vertices. By Section~3,
+\[
+ e(n)=\sum_{c\in S_2(n-1)}|\{d\in D:c+d\in S_2(n)\}|.
+\]
+For $n\geq3$, transform the old set to $P(2n-1,n-1)$. Its coordinate
+bounds are $0\leq u,v\leq2n-1$ and
+$n\leq u+v\leq3n-2$. In the new transformed coordinates a neighbor
+has coordinates $(u,v)+(1,1)+d'$, with $d'\in E$.
+For the six respective moves, the only excluded old points lie on
+\[
+ u+v=3n-2,\quad v=2n-1,\quad u=2n-1,\quad
+ u+v=n,\quad v=0,\quad u=0.
+\]
+For example, $d'=(1,1)$ raises the sum by $4$, so only the old upper
+sum boundary exceeds the new upper bound $3n+1$; all other bounds hold.
+The other moves give the displayed five boundaries by substitution.
+Each coordinate boundary contains
+$b=\lfloor(2n-1)/3\rfloor-\lfloor(n-1)/3\rfloor$ points.
+Each sum boundary contains
+$c=\lfloor(n-\rho)/3\rfloor+1$ points, where
+$\rho\in\{0,1,2\}$ is the residue of $2n$ modulo $3$.
+Indeed the lower sum boundary requires $u\equiv2n\pmod3$ and
+$0\leq u\leq n$; reflection gives the upper one.
+Boundary intersections are counted for each missing direction, as required.
+Consequently
+\[
+ e(n)=6v(n-1)-4b-2c.
+\]
+Substituting Corollary~\ref{cor:formulas} gives the edge formulas.
+At $n=1$ the two circles have three retained vertices each, giving $6$
+incidences. At $n=2$ the circles centered at $(0,0),(1,0)$ have five
+retained vertices each, and those centered at $(0,1),(1,-1)$ have four
+each, giving $18$.
+The unit-neighbor graph of every $S_2(n-1)$ is connected: the seed is
+connected and each added point has two old neighbors. Therefore the
+circle arrangement is connected. Euler's formula gives
+$r(n)=e(n)-v(n)+1$, including at tangencies and vertices of degree two.
+Substitution proves the region formulas and the two initial cases.
+\end{proof}
+
+\begin{corollary}\label{cor:circles}
+Let $c(n)$ count the circles first drawn at stage $n$ of Shannon's
+construction, with the two initial circles at $n=0$. Then
+\[
+ c(0)=2,\qquad c(n)=v(n)-v(n-1)\quad(n\geq1),
+\]
+where $v(0)=2$, and
+\[
+ \sum_{n\geq0}c(n)z^n=
+ \frac{2+2z^2+4z^4-2z^5}{(1-z)^2(1+z+z^2)}.
+\]
+\end{corollary}
+\begin{proof}
+One new circle is drawn at each new center, and centers determine distinct
+circles. Thus the first identity follows from the construction. Multiply
+$\sum_{n\geq0}v(n)z^n$ by $1-z$ and sum the three formulas in
+Corollary~\ref{cor:formulas}; this gives the displayed rational function.
+\end{proof}
+
+There is also an exact algebraic link to Pfoertner's October 4, 2026
+observation in the history of A400701 \cite{markey}. Define $p(n)$ as the
+coefficient of $z^n$ in Barker's recorded A265676 generating function
+\cite{petals}:
+\[
+ P(z)=\frac{z(1+5z+6z^2+11z^3-5z^4)}{(1-z)^3(1+z+z^2)}.
+\]
+\begin{corollary}\label{cor:petal}
+For these coefficients,
+$p(n)=3v(n)-6n-5$ for $n\geq1$, and
+$p(n+3)=3a_5(n)-2$ for $n\geq2$.
+\end{corollary}
+\begin{proof}
+Writing $V(z)=\sum_{n\geq1}v(n)z^n$, Corollary~\ref{cor:formulas} gives
+\[
+ V(z)=\frac{4z+2z^3}{(1-z)^2(1-z^3)},\qquad
+ P(z)=3V(z)-\frac{6z}{(1-z)^2}-\frac{5z}{1-z}.
+\]
+Comparison of coefficients proves the first relation.
+Multiplication by the common denominator also gives the polynomial identity
+\[
+ P(z)=z+7z^2+19z^3+43z^4+
+ 3z^3\bigl(F_5(z)-5-13z\bigr)-\frac{2z^5}{1-z}.
+\]
+Comparison of coefficients of $z^{n+3}$ proves the second relation.
+\end{proof}
+This proves the relation for the recorded power series; an independent
+geometric derivation of the petal interpretation of $P$ is a separate
+question. In particular, no claim about that geometric count is deduced
+from a finite prefix.
+
+\section{Coverage and verification}
+\begin{center}\small
+\begin{tabular}{p{.26\linewidth}p{.64\linewidth}}
+\toprule
+Source item & Mathematical coverage\\
+\midrule
+A400701, FORMULA & Difference conjecture and explicit quasipolynomial proved;
+Irvine's generating function and the historical second-difference pattern proved.\\
+A374338, FORMULA & Proved: three conjectured vertex formulas;
+the Euler relation follows from connectedness.\\
+A400699, A400700 & Explicit formulas and Irvine's generating functions and
+recurrences proved, with the initial indices stated above.\\
+Other lattice rules & A338097, A400975, A400002, A400977 use exactly-two
+or restricted-neighbor rules; A008458 is a coordination sequence.
+Their statements are not covered.\\
+A374337, FORMULA & Proved: Shannon's three conjectured region formulas,
+including the exceptional value at $n=1$.\\
+A374339 & Not posed; proved: the edge quasipolynomial in
+Corollary~\ref{cor:regions}; its Euler identity is also established.\\
+A264788 & Not covered. Identification with the added circles in
+Corollary~\ref{cor:circles} is not asserted in the source;
+it fails at stage $3$ ($4$ versus $6$).\\
+A265676; A400701 history & Prior formula cited (Barker, 2015);
+Pfoertner's relation follows for its coefficients.
+The geometric petal count is not covered.\\
+Other circle entries & Not covered: A359569 varies the radius;
+A371373, A371254 use regular polygons.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The proof above covers all four seed sizes. The pinned Lean declaration
+\texttt{MarkeyA400701.result} in
+\href{https://github.com/the-omega-institute/trureturing/blob/2f8421f6b90d37b4815b887f6c60987553831b20/D5/S3/StatisticalMechanics/Percolation/MarkeyFiveSiteGrowthDifference.lean}{the pinned difference file}
+states \eqref{eq:difference} for every pair of distinct Euclidean initial
+points and every $n>1$. Its finite-window count uses the same simultaneous
+two-neighbor rule on an induced, nonperiodic lattice window.
+\texttt{ShannonA374338.result} in
+\href{https://github.com/the-omega-institute/trureturing/blob/2f8421f6b90d37b4815b887f6c60987553831b20/D5/S3/Geometry/ShannonFixedRadiusCircleVertices.lean}{the pinned circle-count file}
+states Shannon's three formulas. The declaration
+\texttt{AxialGrowth.exact\_shape} in
+\href{https://github.com/the-omega-institute/trureturing/blob/2f8421f6b90d37b4815b887f6c60987553831b20/D5/S3/StatisticalMechanics/Percolation/TriangularTwoNeighborGrowth.lean}{the pinned growth file}
+covers seed sizes $2$ and $5$, for $n\geq2$.
+The extensions to seed sizes $3$ and $4$, the region and edge counts,
+the added-circle formula and the power-series identities are written
+proofs here. These statements are not conclusions of the three cited
+Lean declarations. The accompanying \texttt{verify.py} compares exact
+lattice evolution, shapes, formulas, incidences and power-series
+coefficients on specified finite ranges, and tests the boundary lemma.
+These finite comparisons supplement the all-iteration proofs.
+
+\begin{thebibliography}{9}
+\bibitem{markey} A. Markey, \emph{OEIS A400701}, NAME and FORMULA,
+revision 30 (October 20, 2026); generating function by S. A. Irvine,
+October 19, 2026.
+\url{https://oeis.org/A400701}; revision history:
+\url{https://oeis.org/history?seq=A400701}.
+\bibitem{shannon} S. R. Shannon, \emph{OEIS A374338}, NAME, COMMENTS and
+FORMULA, revision 21 (November 10, 2026), submitted July 5, 2024.
+\url{https://oeis.org/A374338}.
+\bibitem{regions} S. R. Shannon, \emph{OEIS A374337}, NAME and FORMULA,
+revision 22 (November 10, 2026), submitted July 5, 2024.
+\url{https://oeis.org/A374337}.
+\bibitem{edges} S. R. Shannon, \emph{OEIS A374339}, NAME and FORMULA,
+revision 17 (November 10, 2026), submitted July 5, 2024.
+\url{https://oeis.org/A374339}.
+\bibitem{circles} K. Ngaokrajang, \emph{OEIS A264788}, NAME, COMMENTS
+and FORMULA, revision 20 (February 16, 2025); generating function by
+C. Barker, December 10, 2015. \url{https://oeis.org/A264788}.
+\bibitem{petals} K. Ngaokrajang, \emph{OEIS A265676}, NAME and FORMULA,
+revision 19 (November 5, 2026); generating function by C. Barker,
+December 13, 2015. \url{https://oeis.org/A265676}.
+\bibitem{three} A. Markey, \emph{OEIS A400699}, NAME and FORMULA,
+revision 38 (November 3, 2026); generating function and recurrence by
+S. A. Irvine, October 9, 2026. \url{https://oeis.org/A400699}.
+\bibitem{four} A. Markey, \emph{OEIS A400700}, NAME and FORMULA,
+revision 35 (November 3, 2026); generating function and recurrence by
+S. A. Irvine, October 9, 2026. \url{https://oeis.org/A400700}.
+\bibitem{gravner} J. Gravner and D. Griffeath,
+\emph{Cellular Automaton Growth on $\Z^2$: Theorems, Examples, and Problems},
+definitive author version, April 1998, Sections~1--2, especially
+Theorem~1 and equation~(2.3).
+\url{https://math.ucdavis.edu/~gravner/papers/cagrowth.pdf}.
+\bibitem{lehjef} H. Lehjef,
+\emph{Investigating Bootstrap Percolation Through Smart Brute-Forcing},
+capstone report, School of Science and Engineering, Al Akhawayn University,
+Spring 2023, Sections~3.2 and 4, printed pp.~13--14 and 24--36.
+\href{https://cdn.aui.ma/sse-capstone-repository/pdf/spring-2023/INVESTIGATING\%20BOOTSTRAP\%20PERCOLATION\%20THROUGH\%20SMART\%20BRUTE-FORCING.pdf}{Institutional full text}.
+\end{thebibliography}
+\noindent\small\copyright\ 2026 Haobo Ma and Wenlin Zhang.
+Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0),
+\url{https://creativecommons.org/licenses/by/4.0/}.
+\end{document}

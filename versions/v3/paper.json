@@ -1,0 +1,66 @@
+{
+  "files": {
+    "pdf": {
+      "bytes": 88725,
+      "matches_public": true,
+      "path": "paper.pdf",
+      "public_sha256": "ef33d46a955792650fe0546f11cefbb84cc979ea755b374d2afd901aed7f136f",
+      "sha256": "ef33d46a955792650fe0546f11cefbb84cc979ea755b374d2afd901aed7f136f"
+    },
+    "source": {
+      "bytes": 15872,
+      "matches_public": true,
+      "path": "source.archive",
+      "public_sha256": "365afc3e7f8e9cfab53e3a2a3c20e3f2957ca41eeba33228acf1f75287d62261",
+      "sha256": "365afc3e7f8e9cfab53e3a2a3c20e3f2957ca41eeba33228acf1f75287d62261"
+    }
+  },
+  "source_identity": "Mathesis public projection",
+  "work": {
+    "abstract_text": "We prove Markey's conjecture in OEIS A400701, FORMULA, revision 30 (October 20, 2026), that the five-site growth count exceeds Shannon's circle-vertex count at the same iteration n > 1 by 4n+7, using residue-class points in expanding hexagons. Counting incidences on the same shapes also proves Shannon's conjectured region formulas and gives the curved-edge counts. The argument proves the recorded formulas for three and four initial sites and the generating functions recorded by Irvine.",
+    "authors": [
+      {
+        "affiliation": "ChronoAI Pte Ltd, Singapore",
+        "name": "Haobo Ma"
+      },
+      {
+        "affiliation": "National University of Singapore; ChronoAI Pte Ltd, Singapore",
+        "name": "Wenlin Zhang"
+      }
+    ],
+    "concept_doi": null,
+    "current_version": 3,
+    "doi": null,
+    "lean_source": {
+      "revision": "2f8421f6b90d37b4815b887f6c60987553831b20",
+      "url": "https://github.com/the-omega-institute/trureturing/blob/2f8421f6b90d37b4815b887f6c60987553831b20/D5/S3/StatisticalMechanics/Percolation/MarkeyFiveSiteGrowthDifference.lean"
+    },
+    "license": "CC-BY-4.0",
+    "msc": [],
+    "pdf": {
+      "bytes": 88725,
+      "sha256": "ef33d46a955792650fe0546f11cefbb84cc979ea755b374d2afd901aed7f136f",
+      "url": "/api/v1/collected-papers/markey-five-site-growth-identity/files/pdf?version=3"
+    },
+    "previous_version": null,
+    "publication": "public",
+    "published_on": "2026-11-23T21:46:25.441176489Z",
+    "record": "markey-five-site-growth-identity",
+    "repository_name": "markey-five-site-growth-identity",
+    "source": {
+      "bytes": 15872,
+      "sha256": "365afc3e7f8e9cfab53e3a2a3c20e3f2957ca41eeba33228acf1f75287d62261",
+      "url": "/api/v1/collected-papers/markey-five-site-growth-identity/files/source?version=3"
+    },
+    "title": "Proof of Markey's five-site growth identity and Shannon's region formulas",
+    "versions": [
+      {
+        "previous_version": null,
+        "published_on": "2026-11-23T21:46:25.441176489Z",
+        "revision": "3",
+        "version": 3
+      }
+    ],
+    "work": "markey-five-site-growth-identity"
+  }
+}

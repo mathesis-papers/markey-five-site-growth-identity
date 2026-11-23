@@ -1,0 +1,120 @@
+{
+  "added_circle_coefficients": 61,
+  "arithmetic": "exact integers",
+  "boundary_checks": {
+    "configurations": 72,
+    "coordinate_range": "[-3,L+3] in each coordinate",
+    "corner_range": [
+      3,
+      10
+    ],
+    "length_minus_corner_range": [
+      2,
+      10
+    ],
+    "points": 28236
+  },
+  "boundary_incidence_comparisons": 58,
+  "count_comparisons": 244,
+  "difference_comparisons": 59,
+  "edge_incidence_comparisons": 60,
+  "four_site_second_difference_comparisons": 59,
+  "initial_counts": {
+    "2": [
+      2,
+      4,
+      8,
+      14,
+      24,
+      34,
+      46,
+      62,
+      78,
+      96,
+      118
+    ],
+    "3": [
+      3,
+      7,
+      13,
+      19,
+      31,
+      43,
+      55,
+      73,
+      91,
+      109,
+      133
+    ],
+    "4": [
+      4,
+      10,
+      18,
+      26,
+      38,
+      52,
+      66,
+      84,
+      104,
+      124,
+      148
+    ],
+    "5": [
+      5,
+      13,
+      23,
+      33,
+      47,
+      61,
+      77,
+      97,
+      117,
+      139,
+      165
+    ]
+  },
+  "initial_edges": [
+    6,
+    18,
+    40,
+    78,
+    132,
+    190,
+    264,
+    354,
+    448,
+    558
+  ],
+  "initial_regions": [
+    3,
+    11,
+    27,
+    55,
+    99,
+    145,
+    203,
+    277,
+    353,
+    441
+  ],
+  "iteration_range": [
+    0,
+    60
+  ],
+  "petal_coefficient_relations": 59,
+  "petal_scope": "Coefficients of the stated rational series; geometric petal counts are separate.",
+  "petal_vertex_coefficient_relations": 60,
+  "power_series_coefficients": 183,
+  "region_formula_comparisons": 60,
+  "scope": "Finite comparisons of simultaneous lattice evolution, exact shapes, closed formulas, circle incidences, region formulas, added-circle and petal power-series coefficients, and the hexagon boundary law.",
+  "second_difference_comparisons": 57,
+  "seed_sizes": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "shape_comparisons": 236,
+  "status": "pass",
+  "three_site_second_difference_comparisons": 58
+}

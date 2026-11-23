@@ -1,0 +1,24 @@
+{
+  "id": "markey-five-site-growth-identity",
+  "revision": 3,
+  "problem_ids": [
+    "a400701-hexgrowth",
+    "a374338-circle-vertices"
+  ],
+  "topic": "Markey's five-site triangular-lattice growth identity and Shannon's fixed-radius circle counts",
+  "title": "Proof of Markey's five-site growth identity and Shannon's region formulas",
+  "creators": [
+    {
+      "name": "Haobo Ma",
+      "affiliation": "ChronoAI Pte Ltd, Singapore"
+    },
+    {
+      "name": "Wenlin Zhang",
+      "affiliation": "National University of Singapore; ChronoAI Pte Ltd, Singapore"
+    }
+  ],
+  "abstract": "We prove Markey's conjecture in OEIS A400701, FORMULA, revision 30 (October 20, 2026), that the five-site growth count exceeds Shannon's circle-vertex count at the same iteration n > 1 by 4n+7, using residue-class points in expanding hexagons. Counting incidences on the same shapes also proves Shannon's conjectured region formulas and gives the curved-edge counts. The argument proves the recorded formulas for three and four initial sites and the generating functions recorded by Irvine.",
+  "summary": "An exact hexagonal-shape description proves A400701(n)=A374338(n)+4n+7 for every n >= 2 and the two-, three-, four- and five-site formulas. Circle incidences give the A374337 region formulas, A374339 edge counts and a generating function for newly drawn circles. Pfoertner's relation is established for the coefficients of Barker's recorded A265676 rational series; its geometric petal interpretation is separate.",
+  "license": "cc-by-4.0",
+  "evidence_url": "https://github.com/the-omega-institute/trureturing/blob/2f8421f6b90d37b4815b887f6c60987553831b20/D5/S3/StatisticalMechanics/Percolation/MarkeyFiveSiteGrowthDifference.lean"
+}
