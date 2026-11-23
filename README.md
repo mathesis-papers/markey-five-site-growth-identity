@@ -5,13 +5,15 @@
 We prove Markey's conjecture in OEIS A400701, FORMULA, revision 30 (October 20, 2026), that the five-site growth count exceeds Shannon's circle-vertex count at the same iteration n > 1 by 4n+7, using residue-class points in expanding hexagons. Counting incidences on the same shapes also proves Shannon's conjectured region formulas and gives the curved-edge counts. The argument proves the recorded formulas for three and four initial sites and the generating functions recorded by Irvine.
 
 - PDF: [frozen public file](paper.pdf)
+- DOI: [https://doi.org/10.5281/zenodo.24483900](https://doi.org/10.5281/zenodo.24483900)
+- Concept DOI: [https://doi.org/10.5281/zenodo.24483899](https://doi.org/10.5281/zenodo.24483899)
 - License: CC-BY-4.0
 - Version: 3
 - Mathesis record: [markey-five-site-growth-identity](https://mathesis-omega-research.apps.chrono-ai.fun/papers/markey-five-site-growth-identity?version=3)
 
 ## How to cite
 
-Haobo Ma, Wenlin Zhang (2026). Proof of Markey's five-site growth identity and Shannon's region formulas. Mathesis, version 3. https://mathesis-omega-research.apps.chrono-ai.fun/papers/markey-five-site-growth-identity?version=3
+Haobo Ma, Wenlin Zhang (2026). Proof of Markey's five-site growth identity and Shannon's region formulas. Mathesis, version 3. https://doi.org/10.5281/zenodo.24483900
 
 ## Statement progress
 
