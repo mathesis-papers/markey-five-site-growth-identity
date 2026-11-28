@@ -31,6 +31,7 @@
     "concept_doi": "10.5281/zenodo.24483899",
     "current_version": 3,
     "doi": "10.5281/zenodo.24483900",
+    "kind": "note",
     "lean_source": {
       "revision": "2f8421f6b90d37b4815b887f6c60987553831b20",
       "url": "https://github.com/the-omega-institute/trureturing/blob/2f8421f6b90d37b4815b887f6c60987553831b20/D5/S3/StatisticalMechanics/Percolation/MarkeyFiveSiteGrowthDifference.lean"
@@ -55,10 +56,12 @@
     "title": "Proof of Markey's five-site growth identity and Shannon's region formulas",
     "versions": [
       {
+        "changelog": null,
         "previous_version": null,
         "published_on": "2026-11-23T21:46:25.441176489Z",
         "revision": "3",
-        "version": 3
+        "version": 3,
+        "version_label": null
       }
     ],
     "work": "markey-five-site-growth-identity"
